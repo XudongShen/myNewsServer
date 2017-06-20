@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    <title>一点游戏</title>
+    <link rel="stylesheet" href="/css/mycss.css" />
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/js/getcontent.js"></script>
+    <script type="text/javascript">
+        $(window).load(startup('games'));
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/homepage.html">一点新闻</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">一点专栏<span class="caret"></span></a>
+                        <ul class="dropdown-menu mydropdown">
+                            <li><a href="/news.html">新闻</a></li>
+                            <li><a href="/shehui.html">社会</a></li>
+                            <li><a href="/stock.html">股票</a></li>
+                            <li><a href="/fashion.html">时尚</a></li>
+                            <li><a href="/astro.html">星座</a></li>
+                            <li><a href="/tech.html">科技</a></li>
+                            <li><a href="/ent.html">娱乐</a></li>
+                            <li><a href="/sports.html">体育</a></li>
+                            <li><a href="/finance.html">经济</a></li>
+                            <li><a href="/mil.html">军事</a></li>
+                            <li><a href="/digi.html">数码</a></li>
+                            <li><a href="/games.html">游戏</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/about.html">关于</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/usercenter.html" id="user">用户中心</a></li>
+                    <li><a href="/">注销</a></li>
+                </ul>
+                <form class="navbar-form navbar-right">
+                    <input type="text" class="form-control" placeholder="搜索...">
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container myheader">
+        <div class="row">
+            <h1>一点游戏</h1>
+        </div>
+    </div>
+
+    <div class="container mycontainer" id="mybody"></div>
+    <div class="container mymore">
+        <a onmousedown="loadmore()">点我加载更多</a>
+    </div>
+
+</body>
+
+</html>
