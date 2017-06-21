@@ -6,6 +6,10 @@ var url = require('url');
 var fs = require('fs');
 var bodyParser = require('body-parser');
 var cookiesParser = require('cookie-parser');
+var crypto = require('crypto');
+var GeTui = require('./getui/GT.push');
+var NotificationTemplate = require('./getui/getui/template/NotificationTemplate');
+var AppMessage = require('./getui/getui/message/AppMessage');
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
@@ -409,3 +413,50 @@ var server = app.listen(8081, function() {
     var port = server.address().port;
     console.log("server run at %s:%s", host, port);
 });
+
+var duration = 1000 * 60 * 60;
+var HOST = 'http://sdk.open.api.igexin.com/apiex.htm';
+var APPID = '6BA3m3awmB8gL8UMs37ql6';
+var APPKEY = 'PWhdjAMI7H802Hb0GLYSz9';
+var MASTERSECRET = 'pU9JP1c33f52eZWK2OE3P3';
+var gt = new GeTui(HOST, APPKEY, MASTERSECRET);
+
+function pushService(title, digest) {
+    var taskGroupName = null;
+    var template = new NotificationTemplate({
+        appId: APPID,
+        appKey: APPKEY,
+        title: title,
+        text: digest,
+        logo: "logo.png",
+        isRing: true,
+        isVibrate: true,
+        transmissionType: 1,
+        transmissionContent: '测试离线'
+    });
+
+    var message = new AppMessage({
+        isOffline: false,
+        offlineExpireTime: 3600 * 12 * 1000,
+        data: template,
+        appIdList: [APPID]
+    });
+
+    gt.pushMessageToApp(message, taskGroupName, function(err, res) {
+        console.log(res);
+    });
+}
+
+function pacPush() {
+    var findNews = "SELECT * FROM news ORDER BY id DESC LIMIT 1";
+    connection.query(findNews, function(err, data) {
+        if (err) {
+            console.log('推送失败1');
+        } else {
+            pushService(data[0].title, data[0].digest);
+        }
+    });
+}
+
+pacPush();
+setInterval(pacPush, duration);
