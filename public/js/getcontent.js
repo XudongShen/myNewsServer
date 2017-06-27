@@ -57,7 +57,6 @@ function buildbody(data) {
 
 function getbody(typename, pagenumber) {
     gloabal_type = typename;
-    gloabal_page = 1;
     $.post("/content", {
         type: typename,
         page: pagenumber
@@ -68,6 +67,7 @@ function getbody(typename, pagenumber) {
 
 function homestartup() {
     if_search = 0;
+    gloabal_page = 1;
     gloabal_type = 'home';
     $.get("/cookies", function(data) {
         if (data != 'null') {
@@ -81,6 +81,7 @@ function homestartup() {
 
 function startup(typename) {
     if_search = 0;
+    gloabal_page = 1;
     $.get("/cookies", function(data) {
         if (data != 'null') {
             $('#user').text(data.name);
