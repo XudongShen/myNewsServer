@@ -16,7 +16,7 @@ function buildbody(data) {
                 result += '<div class="row">';
             }
             var tmp = '<div class="col-md-6">' +
-                '<a href="' + dat[i].href + '">' +
+                '<a href="' + dat[i].href + '" onmousedown="count()">' +
                 '<div class="mynews">' +
                 '<div class="myimg">' +
                 '<img src="' + dat[i].imgsrc + '" alt="' + dat[i].title + '" class="img-responsive">' +

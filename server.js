@@ -113,6 +113,8 @@ function getRandom(data) {
 }
 
 app.post('/count', urlencodedParser, function(req, res) {
+    if (req.body.type == 'home')
+        return;
     var findPrefer = "SELECT * FROM record WHERE name = '" + req.cookies.user.name + "'";
     connection.query(findPrefer, function(err, data) {
         if (err) {
