@@ -1,5 +1,6 @@
 var gloabal_type;
 var gloabal_page;
+var if_search;
 
 function buildbody(data) {
     if (data == '服务器无响应') {
@@ -66,6 +67,8 @@ function getbody(typename, pagenumber) {
 }
 
 function homestartup() {
+    if_search = 0;
+    gloabal_type = 'home';
     $.get("/cookies", function(data) {
         if (data != 'null') {
             $('#user').text(data.name);
@@ -77,6 +80,7 @@ function homestartup() {
 }
 
 function startup(typename) {
+    if_search = 0;
     $.get("/cookies", function(data) {
         if (data != 'null') {
             $('#user').text(data.name);
@@ -86,12 +90,29 @@ function startup(typename) {
 }
 
 function loadmore() {
-    gloabal_page++;
-    getbody(gloabal_type, gloabal_page);
+    if (if_search == 0) {
+        gloabal_page++;
+        getbody(gloabal_type, gloabal_page);
+    }
 }
 
 function count() {
     $.post("/count", {
         type: gloabal_type
     }, function() {});
+}
+
+function myGetKey(e) {
+    var evt = window.event ? window.event : e;
+    var keycode = evt.keyCode ? evt.keyCode : evt.which;
+
+    if (keycode == 13) {
+        if_search = 1;
+        $.post("/search", {
+            type: gloabal_type,
+            substr: $('#search').val()
+        }, function(data) {
+            buildbody(data);
+        });
+    }
 }

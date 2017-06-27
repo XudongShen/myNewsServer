@@ -328,6 +328,22 @@ app.post('/content', urlencodedParser, function(req, res) {
     });
 });
 
+app.post('/search', urlencodedParser, function(req, res) {
+    var typename = req.body.type;
+    var substr = req.body.substr;
+    var findNews = "SELECT * FROM news WHERE title like '%" + substr + "%' ORDER BY id DESC LIMIT 12";
+    if (typename == 'home') {
+        connection.query(findNews, function(err, data) {
+            res.json(JSON.stringify(data));
+        });
+    } else {
+        findNews = "SELECT * FROM news WHERE type = '" + typename + "' AND title like '%" + substr + "%' ORDER BY id DESC LIMIT 12";
+        connection.query(findNews, function(err, data) {
+            res.json(JSON.stringify(data));
+        });
+    }
+});
+
 app.post('/', urlencodedParser, function(req, res) {
     console.log("login requst received");
     var response = {
