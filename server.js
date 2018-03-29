@@ -20,7 +20,7 @@ app.use(cookiesParser());
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'sxd1005',
+    password: '123456',
     database: 'bs'
 });
 

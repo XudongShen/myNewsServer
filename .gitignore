@@ -1,0 +1,4 @@
+node_moudules
+/getui/*
+!.gitignore
+!/getui/package.json
