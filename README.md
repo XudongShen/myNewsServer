@@ -1,2 +1,8 @@
-# serverForBS_js
-It's a website writen by js using bootstrap and nodejs
+myNewsServer
+=========
+
+一个用于爬取新闻网站相关新闻并且收集展示的服务  
+
+用法
+-------
+
